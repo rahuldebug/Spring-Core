@@ -19,8 +19,8 @@ public class Author {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public void setBooks(Book book) {
+        this.books.add(book);
     }
 
     @ManyToMany

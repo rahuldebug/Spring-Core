@@ -17,6 +17,11 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private Set<Author>authors= new HashSet<>();
 
+    public Book(String title, String isbn) {
+        this.title = title;
+        this.isbn = isbn;
+    }
+
     public String getTitle() {
         return title;
     }
