@@ -1,5 +1,6 @@
 package com.rahul.spring5;
 
+import com.rahul.spring5.controllers.DefaultController;
 import com.rahul.spring5.controllers.DemoController;
 import com.rahul.spring5.controllers.GreetingController;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,8 @@ public class Spring5Application {
         System.out.println(ctrl.sayHello());
         GreetingController greetingController=(GreetingController)ctx.getBean("greetingController");
         greetingController.greet();
+        DefaultController defaultController= (DefaultController)ctx.getBean("defaultController");
+        defaultController.greetDefault();
     }
 
 }
