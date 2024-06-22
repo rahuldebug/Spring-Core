@@ -36,15 +36,13 @@
 [There are different bean scopes :: Singleton , Prototype , Session , Request , Application, websocket]
 
         [Eager and Lazy Beans] Singleton beans are eagerly initialized , while Prototype are lazyily initialized 
+
 [Bean LifeCycle]
+
         Application Start --> IOC Container Created (Configuration Loaded) --> (Component Scan) Bean Created---
                                                                                                                 |
                                                                                                                 |
                                     Bean Destroyed <-- Pre Destroy <-- Use Bean <--   PostConstruct       <----
-
-
-
-
 
 
 
@@ -66,13 +64,28 @@
         - @Controller and @ResponseBody  , the annotation of response body 
 
         @RequestMapping
+        //to map request to controller
+
         @GetMapping @PostMapping @PutMapping @PatchMapping @DeleteMapping
+        // different verbs implementation
+
         @Autowired
+        // wiring of beans to different components 
+
         @Component
+        //tells spring container in component scan to create bean of the class
+
         @Service
         @Repository
+        @Controller
+        // are basically component used at different layers  also called stereotypes
+
         @ComponentScan
+        // this at application level tells that all the  package under the base package must be scanned for component
+
         @Configuration
+        //if something apart from autoconfiguration is implemented , it is used for configuration.
+
         @Value
         @Qualifier
         @Profile
@@ -84,34 +97,48 @@
         @EnableScheduling
 
 
-[API Best Practices]
-
+[Types of APIs]
+        
+        Rest , Graphql , gRPC
+        
+[API Best Practices REST]
+        
 [Naming]
-Name should be meaningful and must tell what Api actually does, it should be a verb.
-[Parameters]
-Just to make api future-proof we should not take in unnecessary parameters , instead
-we should rely  on versioning . 
-[information]
-Fetched data should not send extra information , over fetching and under-fetching should be avoided 
-[HTTP Verbs]
-Proper verbs should be used , we should not be sending data in get call . 
-so POST , GET , PUT , PATCH, DELETE should be used correctly . 
-Http Verbs 
-- GET Request to retrieve data 
-- HEAD similar to GET without response body 
-- POST uses entity to create resource 
-- PUT it replaces current target resource with the payload 
-- DELETE it deletes the resource 
-- CONNECT , TRACE  -- never used 
-- OPTIONS describes the supported communication. 
-- PATCH partial modification of resource 
 
+        Name should be meaningful and must tell what Api actually does, it should be a verb.
+[Parameters]
+
+        Just to make api future-proof we should not take in unnecessary parameters , instead
+        we should rely  on versioning . 
+        [information]
+        Fetched data should not send extra information , over fetching and under-fetching should be avoided 
+        [HTTP Verbs]
+        Proper verbs should be used , we should not be sending data in get call . 
+        so POST , GET , PUT , PATCH, DELETE should be used correctly . 
+        Http Verbs 
+            - GET Request to retrieve data
+            - HEAD similar to GET without response body 
+            - POST uses entity to create resource 
+            - PUT it replaces current target resource with the payload 
+            - DELETE it deletes the resource 
+            - CONNECT , TRACE  -- never used 
+            - OPTIONS describes the supported communication. 
+            - PATCH partial modification of resource
+
+[Idempotency]
+
+          Get , delete , Put , Patch calls are already idempotent 
+          to achieve idempotency we need to manage Post calls 
+            -every post call should be accompanied by id (any kind of id) which should be unique so that if same request is hit twice it should not create new resource .
+        
 [Error Codes]
-Proper codes and correct errors should be sent on call . 
-- 1xx continuing processing 
-- 2xx Success
-- 3xx redirection
-- 4xx client error
-- 5xx server error
+
+        Proper codes and correct errors should be sent on call . 
+        - 1xx continuing processing 
+          - 2xx Success
+          - 3xx redirection
+          - 4xx client error
+          - 5xx server error
+
 
 [MAVEN LIFECYCLE]
