@@ -8,7 +8,7 @@
 
 
 [convention over configuration]
-
+        
 
         @Autoconfiguration , nobody tells spring IOC how to create beans this is part of autoconfiguration .
         (Component scan for the base package is auto configured , we can also add other packages for component scan, hence auto configuration is non invasive)
